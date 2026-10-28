@@ -1,0 +1,40 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    /* color-scheme: light dark; */
+}
+
+/* Screen readers only */
+.sr-only{
+    
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: auto;
+    gap: 1em 0;
+    grid-template-areas: 
+    ".... .... .... .... .... .... .... .... ...."
+    ".... head head head head head head head ...."
+    ".... main main main main main main main ...."
+    ".... foot foot foot foot foot foot foot ...."
+    ".... .... .... .... .... .... .... .... ....";
+}
+
+header{
+    grid-area: head;
+}
+
+main{
+    grid-area: main;
+}
+
+footer{
+    grid-area: foot;
+}
