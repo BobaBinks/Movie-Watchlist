@@ -1,5 +1,8 @@
 <html>
     <head>
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width" />
+
         <!-- CSS -->
         <link rel="stylesheet" href="index.css">
         
@@ -12,29 +15,49 @@
         <script src="https://kit.fontawesome.com/6770df082b.js" crossorigin="anonymous"></script>
     </head>
     <body>
+
         <header>
-            header
+            <div class="header-inner-container">
+                <div class="theme-container">
+                    <label for="theme">Select Theme</label>
+                    <select id="theme">
+                        <option id="theme-system">System</option>
+                        <option id="theme-light">Light</option>
+                        <option id="theme-dark">Dark</option>
+                    </select>
+                </div>
+
+                <div class="header-content">
+                    <h1 class="header-title">Find Your Film</h1>
+                    <a>My Watchlist</a>
+                </div>
+            </div>
         </header>
         
         <main>
-            <form>
-                <div>
+            <form class="search-form">
+                <div class="search-form-inner">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <label for='movie-search-input' class="sr-only">Search for a movie</label>
-                    <input type="text" id='movie-search-input' name='movie-search-input' placeholder="Blade Runner">
-                    <button>Search</button>
+                    <label for='movie-search-input' class="sr-only">Searchbar</label>
+                    <input type="search" id='movie-search-input' name='movie-search-input' placeholder="Search for a movie">
+                    <button class="search-btn" id="search-btn">Search</button>
                 </div>
             </form>
             
-            
-            <section class="movies-container">
-                
+            <section class="movies-section">
+                <div class="explore-hint-container" hidden>
+                    <p>Start Exploring</p>
+                </div>
+
+                <div class="movies-list">
+
+                </div>
             </section>
             
-            <footer>
-                Footer
-            </footer>
         </main>
+        <footer>
+            Footer
+        </footer>
         <script src="index.js"></script>
 
     </body>

@@ -2,16 +2,38 @@
     box-sizing: border-box;
 }
 
+:root{
+    color-scheme: light dark;
+    
+    --dark: #121212;
+    --light: white;
+    --form-dark-bg: #2E2E2F;
+    
+    --foreground: light-dark(var(--dark), var(--light));
+    --background: light-dark(var(--light), var(--dark));
+
+    --fluid-30-40: clamp(1.875rem, 1.6193rem + 1.1364vw, 2.5rem);
+    
+    color: var(--foreground);
+    background-color: var(--background);
+}
+
 html, body {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
-    /* color-scheme: light dark; */
+}
+
+a, button{
+    cursor: pointer;
+    font-family: inherit;
 }
 
 /* Screen readers only */
 .sr-only{
-    
+    position: fixed;
+    left: -100px;
+    top: 0
 }
 
 body{
@@ -20,21 +42,104 @@ body{
     grid-template-rows: auto;
     gap: 1em 0;
     grid-template-areas: 
-    ".... .... .... .... .... .... .... .... ...."
-    ".... head head head head head head head ...."
+    "head head head head head head head head head"
     ".... main main main main main main main ...."
-    ".... foot foot foot foot foot foot foot ...."
-    ".... .... .... .... .... .... .... .... ....";
+    "foot foot foot foot foot foot foot foot foot";
 }
 
 header{
     grid-area: head;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.7), rgba(0, 0, 0, 0.7)),
+        url('images/movieRoom.png');
+    background-size: cover;
+
+    display: grid;
+    grid-template-columns: subgrid;
 }
+
+.header-inner-container{
+    grid-column: 2 / -2;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1em 0;
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 
 main{
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 footer{
     grid-area: foot;
+}
+
+/* -------------------------- Searchbar -------------------------- */
+.search-form-inner{
+    border: 1px solid black;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+.search-form-inner, .search-form-inner input[type='search']{
+    background-color: light-dark(white, var(--form-dark-bg));
+}
+
+.search-form-inner svg{
+    margin-left: .9em;
+    align-self: center;
+    color: #9CA3AF;
+}
+
+.search-form-inner input[type='search'], .search-btn{
+    border: none;
+}
+
+.search-form-inner input[type='search']{
+    outline: none;
+    font-family: inherit;
+    color: #6B7280;
+    border-right: 1px solid black;
+    padding: .5em 1em;
+}
+
+.search-btn{
+    background-color: light-dark(#edf1f1, #4B4B4B);
+    font-weight: 600;
+    padding: .5em 2em;
+}
+
+:root:has(option[id='theme-system']:checked){
+    color-scheme: light dark;
+}
+
+:root:has(option[id='theme-light']:checked){
+    color-scheme: light;
+}
+
+:root:has(option[id='theme-dark']:checked){
+    color-scheme: dark;
+}
+
+
+/* -------------------------- Typography -------------------------- */
+h1{
+    font-size: var(--fluid-30-40);
 }
