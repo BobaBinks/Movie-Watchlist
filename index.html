@@ -16,7 +16,7 @@
     </head>
     <body>
 
-        <header>
+        <header class="main-header">
             <div class="header-inner-container">
                 <div class="theme-container">
                     <label for="theme">Select Theme</label>
@@ -44,12 +44,40 @@
                 </div>
             </form>
             
-            <section class="movies-section">
-                <div class="explore-hint-container" hidden>
+            <section class="search-results-section">
+
+                <div class="prompt-search-container hidden">
+                    <i class="fa-solid fa-film"></i>
                     <p>Start Exploring</p>
                 </div>
 
-                <div class="movies-list">
+                <div class="movies-container">
+
+                    <article class="movie-item">
+                        <img class='movie-poster' src="images/bladerunner.png" alt="">
+
+                        <div class="movie-content">
+
+                            <header class="movie-header">
+                                <h2 class="movie-title">
+                                    Blade Runner 2049  
+                                    <span class="movie-rating"><i class="fa-solid fa-star review-icon"></i>8</span>
+                                </h2>
+        
+                                <div class="movie-meta">
+                                    <p class="movie-runtime">164min</p>
+                                    <p class="movie-genres">Action, Drama, Mystery</p>
+                                    
+                                    <div class="movie-item-actions">
+                                        <button class='add-watchlist-btn' data-movie-id=""><i class="fa-solid fa-circle-plus add-icon"></i>Watchlist</button>
+                                    </div>
+                                </div>
+                            </header>
+                            
+                            <p class="movie-description">Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missin...</p>
+                        </div>
+
+                    </article>
 
                 </div>
             </section>

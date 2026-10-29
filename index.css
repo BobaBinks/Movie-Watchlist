@@ -5,18 +5,29 @@
 :root{
     color-scheme: light dark;
     
+    /* Colors */
     --dark: #121212;
     --light: white;
     --form-dark-bg: #2E2E2F;
     
+    /* Themes */
     --foreground: light-dark(var(--dark), var(--light));
     --background: light-dark(var(--light), var(--dark));
-
-    --fluid-30-40: clamp(1.875rem, 1.6193rem + 1.1364vw, 2.5rem);
-    
     color: var(--foreground);
     background-color: var(--background);
+
+    /* Typography */
+    --fluid-10-12: clamp(0.625rem, 0.5739rem + 0.2273vw, 0.75rem);
+    --fluid-12-14: clamp(0.75rem, 0.6989rem + 0.2273vw, 0.875rem);
+    --fluid-16-18: clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+    --fluid-30-40: clamp(1.875rem, 1.6193rem + 1.1364vw, 2.5rem);
+    
+    /* Layout */
+    --search-bar-height: 38px;
+    --body-grid-gap: 1em
 }
+
+
 
 html, body {
     margin: 0;
@@ -40,14 +51,14 @@ body{
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: auto;
-    gap: 1em 0;
+    gap: var(--body-grid-gap) 0;
     grid-template-areas: 
     "head head head head head head head head head"
     ".... main main main main main main main ...."
     "foot foot foot foot foot foot foot foot foot";
 }
 
-header{
+.main-header{
     grid-area: head;
     background-image: 
         linear-gradient(rgba(0,0,0,0.7), rgba(0, 0, 0, 0.7)),
@@ -83,6 +94,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 footer{
@@ -90,12 +102,17 @@ footer{
 }
 
 /* -------------------------- Searchbar -------------------------- */
+.search-form{
+    position: absolute;
+    top: calc((var(--body-grid-gap) + 0.5 * var(--search-bar-height)) * -1);
+}
+
 .search-form-inner{
     border: 1px solid black;
     display: flex;
     border-radius: 5px;
     overflow: hidden;
-
+    height: var(--search-bar-height);
 }
 
 .search-form-inner, .search-form-inner input[type='search']{
@@ -126,6 +143,97 @@ footer{
     padding: .5em 2em;
 }
 
+/* -------------------------- Prompt Search -------------------------- */
+.search-results-section{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1em 0;
+}
+
+.prompt-search-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.prompt-search-container svg{
+    font-size: 3em
+}
+
+/* Movie item */
+.movies-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-item{
+    display: flex;
+    padding: 1em 0;
+    border-bottom: 2px solid light-dark(#E5E7EB, #2C2C2C);
+    align-items: center;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.movie-poster{
+    min-height: 100%;
+}
+
+.movie-title{
+    margin-bottom: 0.5em;
+}
+
+.movie-meta{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.2em;
+    margin-bottom: 0.5em;
+}
+
+.movie-meta *{
+    margin: 0;
+}
+
+.add-watchlist-btn{
+    border: none;
+    background-color: light-dark(var(--light), var(--dark));
+}
+
+.add-watchlist-btn .add-icon{
+    margin-right: 0.2em;
+}
+
+/* -------------------------- Typography -------------------------- */
+h1{
+    font-size: var(--fluid-30-40);
+}
+
+h2, p{
+    margin-top: 0;
+}
+
+.movie-title,
+.prompt-search-container p{
+    font-size: var(--fluid-16-18);
+}
+
+.movie-rating, .movie-meta, .add-watchlist-btn{
+    font-size: var(--fluid-10-12);
+}
+
+.movie-description{
+    font-size: var(--fluid-12-14);
+}
+
+.prompt-search-container p{
+    font-weight: bolder;
+}
+
+/* -------------------------- Theme Selection -------------------------- */
 :root:has(option[id='theme-system']:checked){
     color-scheme: light dark;
 }
@@ -138,8 +246,6 @@ footer{
     color-scheme: dark;
 }
 
-
-/* -------------------------- Typography -------------------------- */
-h1{
-    font-size: var(--fluid-30-40);
+.hidden{
+    display: none;
 }
