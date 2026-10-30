@@ -15,6 +15,7 @@ const moviesContainer = document.getElementById('movies-container')
 // add to watch list container (save it to localstorage)
 
 let moviesArr = []
+let watchlist = []
 
 const render = () => {
     let html = ''
@@ -38,7 +39,7 @@ const render = () => {
                             <p class="movie-genres">${movie.genre}</p>
                             
                             <div class="movie-item-actions">
-                                <button class='add-watchlist-btn' data-movie-id=""><i class="fa-solid fa-circle-plus add-icon"></i>Watchlist</button>
+                                <button class='add-watchlist-btn' data-movie-id="${movie.id}"><i class="fa-solid fa-circle-plus add-icon"></i>Watchlist</button>
                             </div>
                         </div>
                     </header>
@@ -72,22 +73,12 @@ const fetchMovieData = async (id) => {
     const data = await res.json()
 
     return {
-        // title
+        id: data.imdbID,
         title: data.Title,
-        
-        // rating
         rating: data.imdbRating,
-
-        // time
         runTime: data.Runtime,
-
-        // genre
         genre: data.Genre,
-
-        // poster
         poster: data.Poster,
-
-        // description
         description: data.Plot
     }
 }
@@ -108,8 +99,22 @@ const handleSearchSubmit = async (e) => {
     render()
 }
 
+const addToWatchlist = (id) => {
+    watchlist.push(id)
+    localStorage.setItem('movie-watchlist', watchlist)
+}
+
+const removeFromWatchlist = (id) => {
+    watchlist = watchlist.filter((movie) => movie!=id)
+    localStorage.setItem('movie-watchlist', watchlist) 
+}
+
 const handleMovieItemAction = (e) => {
-    console.log("add")
+    console.log(e.target.dataset)
+    if(e.target.dataset['movieId']){
+        addToWatchlist(e.target.dataset['movieId'])
+        return
+    }
 
 }
 

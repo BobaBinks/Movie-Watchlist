@@ -207,6 +207,7 @@ footer{
 
 .add-watchlist-btn .add-icon{
     margin-right: 0.2em;
+    pointer-events: none;
 }
 
 /* -------------------------- Typography -------------------------- */
