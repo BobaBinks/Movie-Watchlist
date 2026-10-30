@@ -179,7 +179,9 @@ footer{
 }
 
 .movie-poster{
-    min-height: 100%;
+    /* 380 x 562 */
+    max-height: 200px;
+    aspect-ratio: 380/562;
 }
 
 .movie-title{

@@ -29,18 +29,18 @@
 
                 <div class="header-content">
                     <h1 class="header-title">Find Your Film</h1>
-                    <a>My Watchlist</a>
+                    <a id="my-watchlist">My Watchlist</a>
                 </div>
             </div>
         </header>
         
         <main>
-            <form class="search-form">
+            <form class="search-form" id="search-form">
                 <div class="search-form-inner">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <label for='movie-search-input' class="sr-only">Searchbar</label>
                     <input type="search" id='movie-search-input' name='movie-search-input' placeholder="Search for a movie">
-                    <button class="search-btn" id="search-btn">Search</button>
+                    <button type='submit' class="search-btn" id="search-btn">Search</button>
                 </div>
             </form>
             
@@ -51,9 +51,9 @@
                     <p>Start Exploring</p>
                 </div>
 
-                <div class="movies-container">
+                <div class="movies-container" id="movies-container">
 
-                    <article class="movie-item">
+                    <!-- <article class="movie-item">
                         <img class='movie-poster' src="images/bladerunner.png" alt="">
 
                         <div class="movie-content">
@@ -77,7 +77,7 @@
                             <p class="movie-description">Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missin...</p>
                         </div>
 
-                    </article>
+                    </article> -->
 
                 </div>
             </section>
@@ -86,7 +86,7 @@
         <footer>
             Footer
         </footer>
-        <script src="index.js"></script>
-
+        <script src="env.js" type="module"></script>
+        <script src="index.js" type="module"></script>
     </body>
 </html>
