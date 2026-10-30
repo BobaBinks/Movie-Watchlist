@@ -6,7 +6,7 @@ const basePosterAPIUrl = 'http://img.omdbapi.com/'
 const searchMovieForm = document.getElementById('search-form')
 const myWatchlist = document.getElementById('my-watchlist')
 const moviesContainer = document.getElementById('movies-container')
-
+const promptSearchEl = document.getElementById('prompt-search-container')
 
 // Todo: 
 // Communicate with the API
@@ -35,7 +35,7 @@ const render = () => {
                         </h2>
 
                         <div class="movie-meta">
-                            <p class="movie-runtime">${movie.runTimes}</p>
+                            <p class="movie-runtime">${movie.runTime}</p>
                             <p class="movie-genres">${movie.genre}</p>
                             
                             <div class="movie-item-actions">
@@ -94,6 +94,10 @@ const handleSearchSubmit = async (e) => {
 
     for(let id of movieIds){
         moviesArr.push(await fetchMovieData(id))
+    }
+
+    if(moviesArr.length > 0){
+        promptSearchEl.classList.add('hidden')
     }
 
     render()
