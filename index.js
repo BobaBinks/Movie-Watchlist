@@ -1,21 +1,12 @@
-import { API_KEY } from "./env.js"
 
-const baseAPIUrl='http://www.omdbapi.com/'
-const basePosterAPIUrl = 'http://img.omdbapi.com/'
+import { fetchMovieData, searchMovies } from "./omdbAPI.js"
+import { addToWatchlist } from "./watchlistStorage.js"
 
 const searchMovieForm = document.getElementById('search-form')
-const myWatchlist = document.getElementById('my-watchlist')
 const moviesContainer = document.getElementById('movies-container')
 const promptSearchEl = document.getElementById('prompt-search-container')
 
-// Todo: 
-// Communicate with the API
-// get the search results
-// fill up movie container
-// add to watch list container (save it to localstorage)
-
 let moviesArr = []
-let watchlist = []
 
 const render = () => {
     let html = ''
@@ -39,7 +30,7 @@ const render = () => {
                             <p class="movie-genres">${movie.genre}</p>
                             
                             <div class="movie-item-actions">
-                                <button class='add-watchlist-btn' data-movie-id="${movie.id}"><i class="fa-solid fa-circle-plus add-icon"></i>Watchlist</button>
+                                <button class='watchlist-btn' data-add-movie-id="${movie.id}"><i class="fa-solid fa-circle-plus add-icon"></i>Watchlist</button>
                             </div>
                         </div>
                     </header>
@@ -54,35 +45,6 @@ const render = () => {
 
     moviesContainer.innerHTML = html
 }
-
-const searchMovies = async (title) => {
-    const res = await fetch(`${baseAPIUrl}?apikey=${API_KEY}&s=${title}&page=1`)
-
-    const data = await res.json()
-
-    // console.log(data.Search)
-    return data.Search.map((movie) => {
-        return movie.imdbID
-    })
-}
-
-const fetchMovieData = async (id) => {
-    // tt2015381
-    const res = await fetch(`${baseAPIUrl}?apikey=${API_KEY}&i=${id}`)
-
-    const data = await res.json()
-
-    return {
-        id: data.imdbID,
-        title: data.Title,
-        rating: data.imdbRating,
-        runTime: data.Runtime,
-        genre: data.Genre,
-        poster: data.Poster,
-        description: data.Plot
-    }
-}
-
 
 const handleSearchSubmit = async (e) => {
     e.preventDefault()
@@ -103,23 +65,13 @@ const handleSearchSubmit = async (e) => {
     render()
 }
 
-const addToWatchlist = (id) => {
-    watchlist.push(id)
-    localStorage.setItem('movie-watchlist', watchlist)
-}
-
-const removeFromWatchlist = (id) => {
-    watchlist = watchlist.filter((movie) => movie!=id)
-    localStorage.setItem('movie-watchlist', watchlist) 
-}
-
-const handleMovieItemAction = (e) => {
+const handleMovieItemAction = async (e) => {
     console.log(e.target.dataset)
-    if(e.target.dataset['movieId']){
-        addToWatchlist(e.target.dataset['movieId'])
-        return
+    if(e.target.dataset['addMovieId']){
+        const movie = await fetchMovieData(e.target.dataset['addMovieId'])
+        addToWatchlist(movie)
+        alert(`Added ${movie.title} to watchlist!`)
     }
-
 }
 
 searchMovieForm.addEventListener('submit', handleSearchSubmit)

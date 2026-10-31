@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="index.css">
+        
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        
+        <!-- Font -->
+        <script src="https://kit.fontawesome.com/6770df082b.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <header class="main-header">
+            <div class="header-inner-container">
+                <div class="theme-container">
+                    <label for="theme">Select Theme</label>
+                    <select id="theme">
+                        <option id="theme-system">System</option>
+                        <option id="theme-light">Light</option>
+                        <option id="theme-dark">Dark</option>
+                    </select>
+                </div>
+
+                <div class="header-content">
+                    <h1 class="header-title">My Watchlist</h1>
+                    <a href="./index.html">Search for movies</a>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="watchlist-section">
+
+                <div class="prompt-watchlist-container" id="prompt-watchlist-container">
+                    <p>Your watchlist is looking a little empty...</p>
+                    <a href="./index.html" class="prompt">
+                        <i class="fa-solid fa-circle-plus add-icon"></i>
+                        Lets add some movies!
+                    </a>
+                </div>
+
+                <div class="movies-container" id="movies-container">
+                </div>
+            </section>
+            
+        </main>
+        <footer>
+            Footer
+        </footer>
+        <script src="env.js" type="module"></script>
+        <script src="watchlist.js" type="module"></script>
+    </body>
+</html>
